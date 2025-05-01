@@ -6,7 +6,7 @@ import { getClassStudents } from "../../redux/sclassRelated/sclassHandle";
 import { Paper, Box, Typography, ButtonGroup, Button, Popper, Grow, ClickAwayListener, MenuList, MenuItem } from '@mui/material';
 import { BlackButton, BlueButton} from "../../components/buttonStyles";
 import TableTemplate from "../../components/TableTemplate";
-import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+import { KeyboardArrowDown, KeyboardArrowUp, Margin } from "@mui/icons-material";
 
 const TeacherClassDetails = () => {
     const navigate = useNavigate()
@@ -84,6 +84,7 @@ const TeacherClassDetails = () => {
                     onClick={() =>
                         navigate("/Teacher/class/student/" + row.id)
                     }
+                    
                 >
                     View
                 </BlueButton>
@@ -159,8 +160,8 @@ const TeacherClassDetails = () => {
                             </Box>
                         </>
                     ) : (
-                        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                            <Typography variant="h5" gutterBottom>
+                        <Paper sx={{ width: '100%', overflow: 'hidden',  }}>
+                            <Typography variant="h5" gutterBottom style={{margin:5}}>
                                 Students List:
                             </Typography>
 
