@@ -24,7 +24,7 @@ const {
     removeStudentAttendance } = require('../controllers/student_controller.js');
 const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
 const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
-
+const quizController = require('../controllers/quiz-controller.js');
 // Admin
 router.post('/AdminReg', adminRegister);
 router.post('/AdminLogin', adminLogIn);
@@ -115,5 +115,16 @@ router.get("/Subject/:id", getSubjectDetail)
 router.delete("/Subject/:id", deleteSubject)
 router.delete("/Subjects/:id", deleteSubjects)
 router.delete("/SubjectsClass/:id", deleteSubjectsByClass)
+//Quiz
+router.post('/api/quizzes/create', quizController.createQuiz);
+router.get('/api/quizzes', quizController.getQuizzes);
+router.post('/api/quizzes/submit/:quizId', quizController.submitQuiz);
+router.delete('/api/quizzes/:id', quizController.deleteQuiz);
+router.put('/api/quizzes/:id', quizController.updateQuiz);
+router.get('/api/quizzes/:id', quizController.getQuizById);
+
+
+
+
 
 module.exports = router;

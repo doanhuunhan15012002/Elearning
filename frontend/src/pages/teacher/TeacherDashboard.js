@@ -23,7 +23,10 @@ import TeacherHomePage from './TeacherHomePage';
 import TeacherProfile from './TeacherProfile';
 import TeacherViewStudent from './TeacherViewStudent';
 import StudentExamMarks from '../admin/studentRelated/StudentExamMarks';
-
+import ManageQuizPage from './ManageQuizPage';
+import CreateQuizPage from './CreateQuizPage';
+import ViewQuizPage from './ViewQuizPage';
+import EditQuizPage from './EditQuizPage';
 const TeacherDashboard = () => {
     const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
@@ -74,21 +77,30 @@ const TeacherDashboard = () => {
                 <Box component="main" sx={styles.boxStyled}>
                     <Toolbar />
                     <Routes>
-                        <Route path="/" element={<TeacherHomePage />} />
-                        <Route path='*' element={<Navigate to="/" />} />
-                        <Route path="/Teacher/dashboard" element={<TeacherHomePage />} />
-                        <Route path="/Teacher/profile" element={<TeacherProfile />} />
+                        <Route path="dashboard" element={<TeacherHomePage />} />
+                        <Route path="profile" element={<TeacherProfile />} />
+                        <Route path="complain" element={<TeacherComplain />} />
+                        <Route path="class" element={<TeacherClassDetails />} />
+                        <Route path="class/student/:id" element={<TeacherViewStudent />} />
+                        <Route
+                            path="class/student/attendance/:studentID/:subjectID"
+                            element={<StudentAttendance situation="Subject" />}
+                        />
+                        <Route
+                            path="class/student/marks/:studentID/:subjectID"
+                            element={<StudentExamMarks situation="Subject" />}
+                        />
+                        <Route path="quiz" element={<ManageQuizPage />} />
+                        <Route path="quiz/create" element={<CreateQuizPage />} />
+                        <Route path="view-quiz/:id" element={<ViewQuizPage />} />
+                        <Route path="edit-quiz/:id" element={<EditQuizPage />} />
 
-                        <Route path="/Teacher/complain" element={<TeacherComplain />} />
-
-                        <Route path="/Teacher/class" element={<TeacherClassDetails />} />
-                        <Route path="/Teacher/class/student/:id" element={<TeacherViewStudent />} />
-
-                        <Route path="/Teacher/class/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation="Subject" />} />
-                        <Route path="/Teacher/class/student/marks/:studentID/:subjectID" element={<StudentExamMarks situation="Subject" />} />
-
-                        <Route path="/logout" element={<Logout />} />
+                        <Route path="logout" element={<Logout />} />
+                        <Route path="*" element={<Navigate to="dashboard" />} />
                     </Routes>
+
+
+
                 </Box>
             </Box>
         </>
