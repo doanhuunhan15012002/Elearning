@@ -1,6 +1,6 @@
 const Quiz = require('../models/quiz');
 const Submission = require('../models/submission');
-
+const Student = require('../models/studentSchema')
 // Tạo quiz (chỉ dành cho giáo viên)
 exports.createQuiz = async (req, res) => {
   try {
@@ -49,44 +49,47 @@ exports.getQuizById = async (req, res) => {
   }
 };
 
-// Sinh viên làm bài và hệ thống tự chấm điểm
 exports.submitQuiz = async (req, res) => {
-  try {
-    const { quizId } = req.params;
-    const { answers } = req.body;
+  const quizId = req.params.id;
 
-    // Tạm thời giả lập userId vì chưa có middleware xác thực
-    const userId = 'dummyUserId';
+  const { studentId, answers } = req.body;
+
+  try {
+    console.log('Submit quiz params:', req.params);
+    console.log('Submit quiz body:', req.body);
+    // Kiểm tra student đã submit chưa
+    const existingSubmission = await Submission.findOne({ student: studentId, quiz: quizId });
+    if (existingSubmission) {
+      return res.status(400).json({ message: 'Quiz already submitted.' });
+    }
 
     const quiz = await Quiz.findById(quizId);
     if (!quiz) return res.status(404).json({ message: 'Quiz not found' });
 
     let score = 0;
-    quiz.questions.forEach((q, i) => {
-      // So sánh đáp án đúng, giả sử correctAnswer và answers[i] cùng kiểu (chuỗi hoặc số)
-      if (q.correctAnswer === answers[i]) score++;
+    quiz.questions.forEach((q, index) => {
+      if (answers[index] === q.correctAnswer) score++;
     });
 
     const submission = new Submission({
+      student: studentId,
       quiz: quizId,
-      student: userId,
       answers,
       score,
     });
 
     await submission.save();
 
-    res.status(200).json({
-      message: 'Quiz submitted successfully',
-      score,
-      total: quiz.questions.length
-    });
-  } catch (error) {
-    console.error("❌ Error submitting quiz:", error);
-    if (error.stack) console.error(error.stack);
-    res.status(500).json({ message: 'Error submitting quiz', error: error.message });
+    res.status(201).json({ message: 'Submission saved', score, total: quiz.questions.length });
+  } catch (err) {
+    console.error('Error submitting quiz:', err);
+    res.status(500).json({ message: 'Server error' });
   }
 };
+
+
+
+
 
 // Xoá quiz theo ID
 exports.deleteQuiz = async (req, res) => {
@@ -122,3 +125,35 @@ exports.updateQuiz = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+
+exports.checkSubmission = async (req, res) => {
+  const { quizId, studentId } = req.params;
+
+  try {
+    const submission = await Submission.findOne({ quiz: quizId, student: studentId });
+    if (!submission) {
+      return res.json({ submitted: false });
+    }
+
+    res.json({
+      submitted: true,
+      score: submission.score,
+      total: submission.answers.length,
+    });
+  } catch (err) {
+    res.status(500).json({ message: 'Error checking submission' });
+  }
+};
+exports.getSubmissionsByStudent = async (req, res) => {
+  const { studentId } = req.params;
+  try {
+    const submissions = await Submission.find({ student: studentId }).select('quiz score');
+    res.json(submissions);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+

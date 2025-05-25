@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
-
+const student =  require('./studentSchema')
 const submissionSchema = new mongoose.Schema({
   quiz: { type: mongoose.Schema.Types.ObjectId, ref: 'Quiz', required: true },
-  student: { type: String, required: true },  // hoặc ObjectId nếu bạn dùng
-  answers: [{ type: String }],
-  score: { type: Number, default: 0 },
+  student: { type: mongoose.Schema.Types.ObjectId, ref: 'Student', required: true }, // phải là ObjectId
+  answers: [
+    {
+      questionId: String,
+      answer: String
+    }
+  ],
+  score: Number,
+  total: Number,
   createdAt: { type: Date, default: Date.now }
 });
 

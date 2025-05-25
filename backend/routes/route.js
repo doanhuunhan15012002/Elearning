@@ -118,10 +118,14 @@ router.delete("/SubjectsClass/:id", deleteSubjectsByClass)
 //Quiz
 router.post('/api/quizzes/create', quizController.createQuiz);
 router.get('/api/quizzes', quizController.getQuizzes);
-router.post('/api/quizzes/submit/:quizId', quizController.submitQuiz);
+router.post('/api/quizzes/submit/:id', quizController.submitQuiz);
 router.delete('/api/quizzes/:id', quizController.deleteQuiz);
 router.put('/api/quizzes/:id', quizController.updateQuiz);
 router.get('/api/quizzes/:id', quizController.getQuizById);
+router.get('/api/quizzes/:id/check-submission/:studentId', quizController.checkSubmission);
+router.get('/api/submissions/student/:studentId', quizController.getSubmissionsByStudent);
+
+
 
 
 

@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const TakeQuizPage = () => {
   const { quizId } = useParams();
@@ -18,7 +19,7 @@ const TakeQuizPage = () => {
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchQuiz = async () => {
       try {
@@ -41,16 +42,35 @@ const TakeQuizPage = () => {
   };
 
   const handleSubmit = async () => {
-    try {
-      const res = await axios.post(`http://localhost:5000/api/quizzes/submit/${quizId}`, {
-        answers: quiz.questions.map((_, index) => answers[index] || ''),
-      });
-      setResult(res.data);
-    } catch (err) {
-      console.error('Error submitting quiz:', err);
-      if (err.stack) console.error(err.stack);
+  try {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const studentId = user ? user._id : null;
+
+    if (!studentId) {
+      console.log(localStorage.getItem('studentId'))
+      console.error('No studentId found in localStorage');
+      return; // Hoặc bạn có thể show alert, hoặc xử lý khác
     }
-  };
+
+    const res = await axios.post(`http://localhost:5000/api/quizzes/submit/${quizId}`, {
+      studentId,  // lấy từ localStorage
+      answers: quiz.questions.map((q, index) => ({
+        questionId: q._id,
+        answer: answers[index] || ''
+      }))
+    });
+    
+    setResult(res.data);
+    navigate('/student/quizzes'); // Điều hướng sau khi nộp bài
+  } catch (err) {
+    console.error('Error submitting quiz:', err);
+    if (err.response) console.error("Server:", err.response.data);
+  }
+};
+
+
+
+
 
   if (loading) return <CircularProgress />;
 

@@ -8,18 +8,38 @@ const StudentQuizList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchQuizzes = async () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const studentId = user?._id;
+
+    const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/quizzes');
-        setQuizzes(response.data);
+        // Gọi API đồng thời lấy quiz và submission của học sinh
+        const [quizRes, submissionRes] = await Promise.all([
+          axios.get('http://localhost:5000/api/quizzes'),
+          axios.get(`http://localhost:5000/api/submissions/student/${studentId}`)
+        ]);
+
+        const submissions = submissionRes.data; // [{ quiz: 'quizId', score: x }, ...]
+
+        // Gắn trạng thái submitted và điểm số vào từng quiz
+        const quizzesWithStatus = quizRes.data.map(quiz => {
+          const submission = submissions.find(s => s.quiz === quiz._id);
+          return {
+            ...quiz,
+            submitted: !!submission,
+            score: submission ? submission.score : null
+          };
+        });
+
+        setQuizzes(quizzesWithStatus);
       } catch (error) {
-        console.error('Error fetching quizzes:', error);
+        console.error('Error fetching quizzes or submissions:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchQuizzes();
+    fetchData();
   }, []);
 
   if (loading) {
@@ -35,6 +55,7 @@ const StudentQuizList = () => {
       <Typography variant="h4" gutterBottom>
         Available Quizzes
       </Typography>
+
       {quizzes.length === 0 ? (
         <Typography>No quizzes available.</Typography>
       ) : (
@@ -44,18 +65,21 @@ const StudentQuizList = () => {
               <Card>
                 <CardContent>
                   <Typography variant="h6">{quiz.title}</Typography>
-                  <Typography variant="body2" color="text.secondary" gutterBottom>
-                    {quiz.description}
-                  </Typography>
-                  <Button
-                    component={Link}
-                    to={`/Student/take-quiz/${quiz._id}`}
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                  >
-                    Take Quiz
-                  </Button>
+                  {quiz.submitted ? (
+                    <Typography variant="subtitle1" color="green">
+                      Score: {quiz.score} / {quiz.questions.length}
+                    </Typography>
+                  ) : (
+                    <Button
+                      component={Link}
+                      to={`/Student/take-quiz/${quiz._id}`}
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                    >
+                      Take Quiz
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             </Grid>

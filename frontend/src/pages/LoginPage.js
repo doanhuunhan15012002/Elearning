@@ -14,14 +14,14 @@ const defaultTheme = createTheme();
 
 const LoginPage = ({ role }) => {
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
-    const { status, currentUser, response, error, currentRole } = useSelector(state => state.user);;
+    const { status, currentUser, response, error, currentRole } = useSelector(state => state.user);
 
-    const [toggle, setToggle] = useState(false)
-    const [guestLoader, setGuestLoader] = useState(false)
-    const [loader, setLoader] = useState(false)
+    const [toggle, setToggle] = useState(false);
+    const [guestLoader, setGuestLoader] = useState(false);
+    const [loader, setLoader] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
     const [message, setMessage] = useState("");
 
@@ -97,29 +97,37 @@ const LoginPage = ({ role }) => {
         }
     }
 
+    // Hiện tại check status login, điều hướng và hiện popup lỗi
     useEffect(() => {
-        if (status === 'success' || currentUser !== null) {
-            if (currentRole === 'Admin') {
-                navigate('/Admin/dashboard');
-            }
-            else if (currentRole === 'Student') {
-                navigate('/Student/dashboard');
-            } else if (currentRole === 'Teacher') {
-                navigate('/Teacher/dashboard');
-            }
+    if (status === 'success' && currentUser && currentUser._id) {
+        // Ghi log để kiểm tra
+        console.log('Đăng nhập thành công:', { currentUser, currentRole });
+
+        // Nếu role là Student, lưu studentId
+        if (role === 'Student') {
+            localStorage.setItem('studentId', currentUser._id);
         }
-        else if (status === 'failed') {
-            setMessage(response)
-            setShowPopup(true)
-            setLoader(false)
+
+        // Điều hướng dựa vào prop `role`, không phải `currentRole` từ store
+        if (role === 'Admin') {
+            navigate('/Admin/dashboard');
+        } else if (role === 'Student') {
+            navigate('/Student/dashboard');
+        } else if (role === 'Teacher') {
+            navigate('/Teacher/dashboard');
         }
-        else if (status === 'error') {
-            setMessage("Network Error")
-            setShowPopup(true)
-            setLoader(false)
-            setGuestLoader(false)
-        }
-    }, [status, currentRole, navigate, error, response, currentUser]);
+    } else if (status === 'failed') {
+        setMessage(response);
+        setShowPopup(true);
+        setLoader(false);
+    } else if (status === 'error') {
+        setMessage("Network Error");
+        setShowPopup(true);
+        setLoader(false);
+        setGuestLoader(false);
+    }
+}, [status, currentUser, role, navigate, response]);
+
 
     return (
         <ThemeProvider theme={defaultTheme}>

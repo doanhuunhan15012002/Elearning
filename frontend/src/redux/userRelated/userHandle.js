@@ -31,6 +31,8 @@ export const loginUser = (fields, role) => async (dispatch) => {
             { headers: { 'Content-Type': 'application/json' } }
         );
 
+        console.log("Login response:", result.data); // ✅ Thêm dòng này để kiểm tra
+
         if (result.data.role) {
             dispatch(authSuccess(result.data));
         } else {
@@ -40,6 +42,7 @@ export const loginUser = (fields, role) => async (dispatch) => {
         dispatch(authError(formatError(error)));
     }
 };
+
 
 // Register
 export const registerUser = (fields, role) => async (dispatch) => {
