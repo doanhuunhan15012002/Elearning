@@ -45,20 +45,20 @@ const AddNotice = () => {
     <>
       <div className="register">
         <form className="registerForm" onSubmit={submitHandler}>
-          <span className="registerTitle">Add Notice</span>
+          <span className="registerTitle">Thêm thông báo</span>
           <label>Title</label>
           <input className="registerInput" type="text" placeholder="Enter notice title..."
             value={title}
             onChange={(event) => setTitle(event.target.value)}
             required />
 
-          <label>Details</label>
+          <label>Chi tiết</label>
           <input className="registerInput" type="text" placeholder="Enter notice details..."
             value={details}
             onChange={(event) => setDetails(event.target.value)}
             required />
 
-          <label>Date</label>
+          <label>Ngày</label>
           <input className="registerInput" type="date" placeholder="Enter notice date..."
             value={date}
             onChange={(event) => setDate(event.target.value)}

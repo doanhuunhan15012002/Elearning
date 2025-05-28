@@ -27,6 +27,7 @@ import ManageQuizPage from './ManageQuizPage';
 import CreateQuizPage from './CreateQuizPage';
 import ViewQuizPage from './ViewQuizPage';
 import EditQuizPage from './EditQuizPage';
+import TeacherViewMark from './TeacherViewMark';
 const TeacherDashboard = () => {
     const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
@@ -58,7 +59,7 @@ const TeacherDashboard = () => {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Teacher Dashboard
+                            Trang chủ giáo viên
                         </Typography>
                         <AccountMenu />
                     </Toolbar>
@@ -92,6 +93,7 @@ const TeacherDashboard = () => {
                         />
                         <Route path="quiz" element={<ManageQuizPage />} />
                         <Route path="quiz/create" element={<CreateQuizPage />} />
+                        <Route path="quiz-results/:quizId" element={<TeacherViewMark />} />
                         <Route path="view-quiz/:id" element={<ViewQuizPage />} />
                         <Route path="edit-quiz/:id" element={<EditQuizPage />} />
 

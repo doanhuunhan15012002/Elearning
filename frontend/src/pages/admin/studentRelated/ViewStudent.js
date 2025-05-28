@@ -102,7 +102,7 @@ const ViewStudent = () => {
     }
 
     const deleteHandler = () => {
-        setMessage("Sorry the delete function has been disabled for now.")
+        setMessage("Xin lỗi. Chức năng xóa sinh viên hiện tại đã bị vô hiệu")
         setShowPopup(true)
 
         // dispatch(deleteUser(studentID, address))
@@ -129,8 +129,8 @@ const ViewStudent = () => {
     const overallAbsentPercentage = 100 - overallAttendancePercentage;
 
     const chartData = [
-        { name: 'Present', value: overallAttendancePercentage },
-        { name: 'Absent', value: overallAbsentPercentage }
+        { name: 'Có mặt', value: overallAttendancePercentage },
+        { name: 'Vắng mặt', value: overallAbsentPercentage }
     ];
 
     const subjectData = Object.entries(groupAttendanceBySubject(subjectAttendance)).map(([subName, { subCode, present, sessions }]) => {
@@ -147,15 +147,15 @@ const ViewStudent = () => {
         const renderTableSection = () => {
             return (
                 <>
-                    <h3>Attendance:</h3>
+                    <h3>Tham dự:</h3>
                     <Table>
                         <TableHead>
                             <StyledTableRow>
-                                <StyledTableCell>Subject</StyledTableCell>
-                                <StyledTableCell>Present</StyledTableCell>
-                                <StyledTableCell>Total Sessions</StyledTableCell>
-                                <StyledTableCell>Attendance Percentage</StyledTableCell>
-                                <StyledTableCell align="center">Actions</StyledTableCell>
+                                <StyledTableCell>Môn học</StyledTableCell>
+                                <StyledTableCell>Hiện tại</StyledTableCell>
+                                <StyledTableCell>Tổng số học kỳ</StyledTableCell>
+                                <StyledTableCell>Tỉ lệ tham dự</StyledTableCell>
+                                <StyledTableCell align="center">Hành động</StyledTableCell>
                             </StyledTableRow>
                         </TableHead>
                         {Object.entries(groupAttendanceBySubject(subjectAttendance)).map(([subName, { present, allData, subId, sessions }], index) => {
@@ -170,14 +170,14 @@ const ViewStudent = () => {
                                         <StyledTableCell align="center">
                                             <Button variant="contained"
                                                 onClick={() => handleOpen(subId)}>
-                                                {openStates[subId] ? <KeyboardArrowUp /> : <KeyboardArrowDown />}Details
+                                                {openStates[subId] ? <KeyboardArrowUp /> : <KeyboardArrowDown />}Chi tiết
                                             </Button>
                                             <IconButton onClick={() => removeSubAttendance(subId)}>
                                                 <DeleteIcon color="error" />
                                             </IconButton>
                                             <Button variant="contained" sx={styles.attendanceButton}
                                                 onClick={() => navigate(`/Admin/subject/student/attendance/${studentID}/${subId}`)}>
-                                                Change
+                                                Thay đổi
                                             </Button>
                                         </StyledTableCell>
                                     </StyledTableRow>
@@ -186,13 +186,13 @@ const ViewStudent = () => {
                                             <Collapse in={openStates[subId]} timeout="auto" unmountOnExit>
                                                 <Box sx={{ margin: 1 }}>
                                                     <Typography variant="h6" gutterBottom component="div">
-                                                        Attendance Details
+                                                        Chi tiết tham gia
                                                     </Typography>
                                                     <Table size="small" aria-label="purchases">
                                                         <TableHead>
                                                             <StyledTableRow>
-                                                                <StyledTableCell>Date</StyledTableCell>
-                                                                <StyledTableCell align="right">Status</StyledTableCell>
+                                                                <StyledTableCell>Ngày</StyledTableCell>
+                                                                <StyledTableCell align="right">Trạng thái</StyledTableCell>
                                                             </StyledTableRow>
                                                         </TableHead>
                                                         <TableBody>
@@ -220,11 +220,11 @@ const ViewStudent = () => {
                         )}
                     </Table>
                     <div>
-                        Overall Attendance Percentage: {overallAttendancePercentage.toFixed(2)}%
+                        Tỉ lệ tham gia chung: {overallAttendancePercentage.toFixed(2)}%
                     </div>
                     <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={() => removeHandler(studentID, "RemoveStudentAtten")}>Delete All</Button>
                     <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/attendance/" + studentID)}>
-                        Add Attendance
+                        Thêm thành viên
                     </Button>
                 </>
             )
@@ -332,7 +332,7 @@ const ViewStudent = () => {
                     </>
                     :
                     <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/marks/" + studentID)}>
-                        Add Marks
+                        Thêm điểm
                     </Button>
                 }
             </>
@@ -342,20 +342,20 @@ const ViewStudent = () => {
     const StudentDetailsSection = () => {
         return (
             <div>
-                Name: {userDetails.name}
+                Tên: {userDetails.name}
                 <br />
-                Roll Number: {userDetails.rollNum}
+                Mã số sinh viên: {userDetails.rollNum}
                 <br />
-                Class: {sclassName.sclassName}
+                Lớp: {sclassName.sclassName}
                 <br />
-                School: {studentSchool.schoolName}
+                Trường: {studentSchool.schoolName}
                 {
                     subjectAttendance && Array.isArray(subjectAttendance) && subjectAttendance.length > 0 && (
                         <CustomPieChart data={chartData} />
                     )
                 }
                 <Button variant="contained" sx={styles.styledButton} onClick={deleteHandler}>
-                    Delete
+                    Xóa
                 </Button>
                 <br />
                 {/* <Button variant="contained" sx={styles.styledButton} className="show-tab" onClick={() => { setShowTab(!showTab) }}>
@@ -409,9 +409,9 @@ const ViewStudent = () => {
                         <TabContext value={value}>
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <TabList onChange={handleChange} sx={{ position: 'fixed', width: '100%', bgcolor: 'background.paper', zIndex: 1 }}>
-                                    <Tab label="Details" value="1" />
-                                    <Tab label="Attendance" value="2" />
-                                    <Tab label="Marks" value="3" />
+                                    <Tab label="Chi tiết" value="1" />
+                                    <Tab label="Tham dự" value="2" />
+                                    <Tab label="Điểm" value="3" />
                                 </TabList>
                             </Box>
                             <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>

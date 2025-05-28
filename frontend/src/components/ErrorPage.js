@@ -5,9 +5,9 @@ const ErrorPage = () => {
     return (
         <Container>
             <Content>
-                <Heading>Oops, something went wrong</Heading>
+                <Heading>Oops, có gì đó sai sai</Heading>
                 <Text>
-                    We apologize for the inconvenience. Our website is currently experiencing technical difficulties. Please check back later.
+                    Chúng tôi xin lỗi vì sự bất tiện này. Trang web của chúng tôi hiện đang gặp sự cố kỹ thuật. Vui lòng kiểm tra lại sau.
                 </Text>
             </Content>
         </Container>

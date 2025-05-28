@@ -31,12 +31,12 @@ const ShowTeachers = () => {
     const [message, setMessage] = useState("");
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>Đang tải...</div>;
     } else if (response) {
         return (
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
                 <GreenButton variant="contained" onClick={() => navigate("/Admin/teachers/chooseclass")}>
-                    Add Teacher
+                    Thêm giảng viên
                 </GreenButton>
             </Box>
         );
@@ -47,7 +47,7 @@ const ShowTeachers = () => {
     const deleteHandler = (deleteID, address) => {
         console.log(deleteID);
         console.log(address);
-        setMessage("Sorry the delete function has been disabled for now.")
+        setMessage("Xin lỗi, chức năng xóa hiện đã bị vô hiệu hóa.")
         setShowPopup(true)
 
         // dispatch(deleteUser(deleteID, address)).then(() => {
@@ -56,9 +56,9 @@ const ShowTeachers = () => {
     };
 
     const columns = [
-        { id: 'name', label: 'Name', minWidth: 170 },
-        { id: 'teachSubject', label: 'Subject', minWidth: 100 },
-        { id: 'teachSclass', label: 'Class', minWidth: 170 },
+        { id: 'name', label: 'Tên', minWidth: 170 },
+        { id: 'teachSubject', label: 'Môn học phụ trách', minWidth: 100 },
+        { id: 'teachSclass', label: 'Lớp', minWidth: 170 },
     ];
 
     const rows = teachersList.map((teacher) => {
@@ -73,11 +73,11 @@ const ShowTeachers = () => {
 
     const actions = [
         {
-            icon: <PersonAddAlt1Icon color="primary" />, name: 'Add New Teacher',
+            icon: <PersonAddAlt1Icon color="primary" />, name: 'Thêm 1 giảng viên mới',
             action: () => navigate("/Admin/teachers/chooseclass")
         },
         {
-            icon: <PersonRemoveIcon color="error" />, name: 'Delete All Teachers',
+            icon: <PersonRemoveIcon color="error" />, name: 'Xóa tất cả giảng viên hiện có',
             action: () => deleteHandler(currentUser._id, "Teachers")
         },
     ];
@@ -98,7 +98,7 @@ const ShowTeachers = () => {
                                 </StyledTableCell>
                             ))}
                             <StyledTableCell align="center">
-                                Actions
+                                Hành động
                             </StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
@@ -120,7 +120,7 @@ const ShowTeachers = () => {
                                                                 onClick={() => {
                                                                     navigate(`/Admin/teachers/choosesubject/${row.teachSclassID}/${row.id}`)
                                                                 }}>
-                                                                Add Subject
+                                                                Thêm môn học
                                                             </Button>
                                                         )}
                                                     </StyledTableCell>
@@ -138,7 +138,7 @@ const ShowTeachers = () => {
                                             </IconButton>
                                             <BlueButton variant="contained"
                                                 onClick={() => navigate("/Admin/teachers/teacher/" + row.id)}>
-                                                View
+                                                Xem
                                             </BlueButton>
                                         </StyledTableCell>
                                     </StyledTableRow>

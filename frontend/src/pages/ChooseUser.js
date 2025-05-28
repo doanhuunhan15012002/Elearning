@@ -53,7 +53,7 @@ const ChooseUser = ({ visitor }) => {
 
     else if (user === "Teacher") {
       if (visitor === "guest") {
-        const email = "tony@12"
+        const email = "thang@12"
         const fields = { email, password }
         setLoader(true)
         dispatch(loginUser(fields, user))
@@ -93,9 +93,9 @@ const ChooseUser = ({ visitor }) => {
                   <AccountCircle fontSize="large" />
                 </Box>
                 <StyledTypography>
-                  Admin
+                  Quản trị viên
                 </StyledTypography>
-                Login as an administrator to access the dashboard to manage app data.
+                Đăng nhập với tư cách quản trị viên để truy cập bảng điều khiển nhằm quản lý dữ liệu ứng dụng.
               </StyledPaper>
             </div>
           </Grid>
@@ -106,9 +106,9 @@ const ChooseUser = ({ visitor }) => {
                   <School fontSize="large" />
                 </Box>
                 <StyledTypography>
-                  Student
+                  Sinh viên
                 </StyledTypography>
-                Login as a student to explore course materials and assignments.
+                Đăng nhập với tư cách là sinh viên để khám phá tài liệu khóa học và bài tập.
               </div>
             </StyledPaper>
           </Grid>
@@ -119,9 +119,9 @@ const ChooseUser = ({ visitor }) => {
                   <Group fontSize="large" />
                 </Box>
                 <StyledTypography>
-                  Teacher
+                  Giảng viên
                 </StyledTypography>
-                Login as a teacher to create courses, assignments, and track student progress.
+                  Đăng nhập với tư cách giảng viên để tạo khóa học, bài tập và theo dõi tiến độ của học sinh.
               </div>
             </StyledPaper>
           </Grid>
@@ -132,7 +132,7 @@ const ChooseUser = ({ visitor }) => {
         open={loader}
       >
         <CircularProgress color="inherit" />
-        Please Wait
+        Vui lòng đợi
       </Backdrop>
       <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
     </StyledContainer>

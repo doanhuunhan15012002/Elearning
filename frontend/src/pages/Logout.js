@@ -22,9 +22,9 @@ const Logout = () => {
     return (
         <LogoutContainer>
             <h1>{currentUser.name}</h1>
-            <LogoutMessage>Are you sure you want to log out?</LogoutMessage>
-            <LogoutButtonLogout onClick={handleLogout}>Log Out</LogoutButtonLogout>
-            <LogoutButtonCancel onClick={handleCancel}>Cancel</LogoutButtonCancel>
+            <LogoutMessage>Bạn có chắc chắn muốn đăng xuất không?</LogoutMessage>
+            <LogoutButtonLogout onClick={handleLogout}>Đăng xuất</LogoutButtonLogout>
+            <LogoutButtonCancel onClick={handleCancel}>Đóng</LogoutButtonCancel>
         </LogoutContainer>
     );
 };

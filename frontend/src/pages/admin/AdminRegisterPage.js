@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Box, Typography, Paper, Checkbox, FormControlLabel, TextField, CssBaseline, IconButton, InputAdornment, CircularProgress} from '@mui/material';
+import { Grid, Box, Typography, Paper, Checkbox, FormControlLabel, TextField, CssBaseline, IconButton, InputAdornment, CircularProgress } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import bgpic from "../../assets/designlogin.jpg"
@@ -89,13 +89,13 @@ const AdminRegisterPage = () => {
                         }}
                     >
                         <Typography variant="h4" sx={{ mb: 2, color: "#2c2143" }}>
-                            Admin Register
+                            Đăng ký tài khoản quản trị viên
                         </Typography>
                         <Typography variant="h7">
-                            Create your own school by registering as an admin.
+                            Đăng ký làm quản trị viên.
                             <br />
-                            You will be able to add students and faculty and
-                            manage the system.
+                            Bạn sẽ có thể thêm học sinh và giảng viên và
+                            quản lý hệ thống.
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
                             <TextField
@@ -103,7 +103,7 @@ const AdminRegisterPage = () => {
                                 required
                                 fullWidth
                                 id="adminName"
-                                label="Enter your name"
+                                label="Nhập tên"
                                 name="adminName"
                                 autoComplete="name"
                                 autoFocus
@@ -116,7 +116,7 @@ const AdminRegisterPage = () => {
                                 required
                                 fullWidth
                                 id="schoolName"
-                                label="Create your school name"
+                                label="Tên trường"
                                 name="schoolName"
                                 autoComplete="off"
                                 error={schoolNameError}
@@ -128,7 +128,7 @@ const AdminRegisterPage = () => {
                                 required
                                 fullWidth
                                 id="email"
-                                label="Enter your email"
+                                label="Nhập email của bạn"
                                 name="email"
                                 autoComplete="email"
                                 error={emailError}
@@ -140,7 +140,7 @@ const AdminRegisterPage = () => {
                                 required
                                 fullWidth
                                 name="password"
-                                label="Password"
+                                label="Mật khẩu"
                                 type={toggle ? 'text' : 'password'}
                                 id="password"
                                 autoComplete="current-password"
@@ -164,7 +164,7 @@ const AdminRegisterPage = () => {
                             <Grid container sx={{ display: "flex", justifyContent: "space-between" }}>
                                 <FormControlLabel
                                     control={<Checkbox value="remember" color="primary" />}
-                                    label="Remember me"
+                                    label="Ghi nhớ đăng nhập"
                                 />
                             </Grid>
                             <LightPurpleButton
@@ -173,15 +173,15 @@ const AdminRegisterPage = () => {
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                             >
-                                {loader ? <CircularProgress size={24} color="inherit"/> : "Register"}
+                                {loader ? <CircularProgress size={24} color="inherit" /> : "Register"}
                             </LightPurpleButton>
                             <Grid container>
                                 <Grid>
-                                    Already have an account?
+                                    Bạn đã có tài khoản?
                                 </Grid>
                                 <Grid item sx={{ ml: 2 }}>
                                     <StyledLink to="/Adminlogin">
-                                        Log in
+                                        Đăng nhập
                                     </StyledLink>
                                 </Grid>
                             </Grid>

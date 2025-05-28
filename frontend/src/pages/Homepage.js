@@ -25,35 +25,35 @@ const Homepage = () => {
                 <Grid item xs={12} md={6}>
                     <StyledPaper elevation={3}>
                         <StyledTitle>
-                            Welcome to
+                            Chào mừng đến
                             <br />
-                            Manage app of HCMUNRE
+                            với HCMUNRE
                             <br />
                         </StyledTitle>
                         <StyledText>
-                            Create Quiz and Online review the lesson Streamline school management, class organization,
-                            and add students and faculty. Seamlessly track attendance, assess performance, and provide
-                            feedback. Access records, view marks, and communicate effortlessly.
+                            Tạo bài kiểm tra trực tuyến. Tinh giản việc quản lý trường học, tổ chức lớp học,
+                            và thêm học sinh và giảng viên. Theo dõi điểm danh, đánh giá hiệu suất và cung cấp
+                            phản hồi một cách liền mạch. Truy cập hồ sơ, xem điểm và phản hồi dễ dàng.
                         </StyledText>
                         <StyledBox>
                             <StyledLink to="/choose">
                                 <LightPurpleButton variant="contained" fullWidth>
-                                    Login
+                                    Đăng nhập
                                 </LightPurpleButton>
                             </StyledLink>
                             <StyledLink to="/chooseasguest">
-                                <Button
+                                {/* <Button
                                     variant="outlined"
                                     fullWidth
                                     sx={{ mt: 2, mb: 3, color: "#7f56da", borderColor: "#7f56da" }}
                                 >
                                     Login as Guest
-                                </Button>
+                                </Button> */}
                             </StyledLink>
                             <StyledText>
-                                Don't have an account?{' '}
+                                Bạn không có tài khoản?{' '}
                                 <Link to="/Adminregister" style={{ color: "#550080" }}>
-                                    Sign up
+                                    Đăng ký làm quản trị viên
                                 </Link>
                             </StyledText>
                         </StyledBox>

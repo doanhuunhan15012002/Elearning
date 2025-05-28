@@ -52,16 +52,12 @@ const CreateQuizPage = () => {
 
   try {
     const quizData = { title, questions };
-    console.log("🟢 Đang gửi quiz lên backend:", quizData); // 👉 log dữ liệu gửi đi
 
     const res = await axios.post('http://localhost:5000/api/quizzes/create', quizData);
 
-    console.log("✅ Server phản hồi:", res.data); // 👉 log kết quả phản hồi
-
-    alert('Quiz created successfully!');
+    alert('Tạo quiz thành công!');
     navigate('/Teacher/manage-quiz');
   } catch (err) {
-    console.error("❌ Lỗi khi gửi quiz:", err);
     
     if (err.response) {
       console.log("📛 Server trả về lỗi:", err.response.data); // lỗi từ phía server
@@ -71,9 +67,7 @@ const CreateQuizPage = () => {
       console.log("⚠️ Lỗi không xác định:", err.message); // lỗi khác
     }
 
-    console.log("📤 Dữ liệu đã gửi:", { title, questions }); // log lại dữ liệu
-
-    alert('Failed to create quiz');
+    alert('Lỗi khi tạo quiz');
   }
 };
 
@@ -81,7 +75,7 @@ const CreateQuizPage = () => {
   return (
     <Paper elevation={3} sx={{ p: 4, mt: 3, maxWidth: 1000, mx: 'auto' }}>
       <Typography variant="h4" gutterBottom>
-        Create New Quiz
+        Tạo quiz mới
       </Typography>
       <form onSubmit={handleSubmit}>
         <TextField
@@ -125,7 +119,7 @@ const CreateQuizPage = () => {
 
               <Grid item xs={12}>
                 <TextField
-                  label="Correct Option (0-3)"
+                  label="Đáp án đúng (0-3)"
                   type="number"
                   fullWidth
                   inputProps={{ min: 0, max: 3 }}
@@ -143,11 +137,11 @@ const CreateQuizPage = () => {
             startIcon={<AddCircleOutlineIcon />}
             onClick={addQuestion}
           >
-            Add Question
+            Thêm câu hỏi
           </Button>
 
           <Button variant="contained" type="submit" color="primary">
-            Create Quiz
+            Tạo quiz
           </Button>
         </Box>
       </form>

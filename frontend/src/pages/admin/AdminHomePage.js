@@ -40,7 +40,7 @@ const AdminHomePage = () => {
     <Grid item xs={12} md={4}>
       <StyledCard>
         <CardIcon src={Students} alt="Students" />
-        <CardTitle>Total Students</CardTitle>
+        <CardTitle>Tổng số học sinh</CardTitle>
         <CardNumber>
           <Data start={0} end={numberOfStudents} duration={2.5} />
         </CardNumber>
@@ -51,7 +51,7 @@ const AdminHomePage = () => {
     <Grid item xs={12} md={4}>
       <StyledCard>
         <CardIcon src={Classes} alt="Classes" />
-        <CardTitle>Total Classes</CardTitle>
+        <CardTitle>Tổng số lớp học</CardTitle>
         <CardNumber>
           <Data start={0} end={numberOfClasses} duration={2.5} />
         </CardNumber>
@@ -62,7 +62,7 @@ const AdminHomePage = () => {
     <Grid item xs={12} md={4}>
       <StyledCard>
         <CardIcon src={Teachers} alt="Teachers" />
-        <CardTitle>Total Teachers</CardTitle>
+        <CardTitle>Tổng số giáo viên</CardTitle>
         <CardNumber>
           <Data start={0} end={numberOfTeachers} duration={2.5} />
         </CardNumber>

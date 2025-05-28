@@ -24,7 +24,7 @@ const EditQuizPage = () => {
         const response = await axios.get(`http://localhost:5000/api/quizzes/${id}`);
         setQuiz(response.data);
       } catch (err) {
-        console.error('Error fetching quiz:', err);
+        console.error('Lỗi khi tải bài quiz:', err);
       }
     };
 
@@ -69,20 +69,20 @@ const EditQuizPage = () => {
   const handleSubmit = async () => {
     try {
       await axios.put(`http://localhost:5000/api/quizzes/${id}`, quiz);
-      alert('Quiz updated successfully!');
+      alert('Đã cập nhật quiz thành công!');
       navigate('/Teacher/manage-quizzes');
     } catch (error) {
-      console.error('Error updating quiz:', error);
+      console.error('Lỗi cập nhật quiz:', error);
     }
   };
 
   return (
     <Box p={3}>
-      <Typography variant="h4" mb={2}>Edit Quiz</Typography>
+      <Typography variant="h4" mb={2}>Chỉnh sửa Quiz</Typography>
 
       <TextField
         fullWidth
-        label="Quiz Title"
+        label="Chủ đề"
         value={quiz.title}
         onChange={handleTitleChange}
         margin="normal"
@@ -94,7 +94,7 @@ const EditQuizPage = () => {
             <Grid item xs={11}>
               <TextField
                 fullWidth
-                label={`Question ${qIndex + 1}`}
+                label={`Câu hỏi ${qIndex + 1}`}
                 value={q.questionText}
                 onChange={(e) => handleQuestionChange(qIndex, 'questionText', e.target.value)}
               />
@@ -120,7 +120,7 @@ const EditQuizPage = () => {
             <Grid item xs={12}>
               <TextField
                 select
-                label="Correct Answer"
+                label="Đáp án đúng"
                 fullWidth
                 value={q.correctAnswer}
                 onChange={(e) =>
@@ -144,12 +144,12 @@ const EditQuizPage = () => {
         onClick={handleAddQuestion}
         sx={{ mb: 2 }}
       >
-        Add Question
+        Thêm câu hỏi
       </Button>
 
       <Box display="flex" justifyContent="flex-end">
         <Button variant="contained" color="primary" onClick={handleSubmit}>
-          Save Changes
+          Lưu thay đổi
         </Button>
       </Box>
 

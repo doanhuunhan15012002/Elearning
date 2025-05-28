@@ -19,11 +19,19 @@ const StudentQuizList = () => {
           axios.get(`http://localhost:5000/api/submissions/student/${studentId}`)
         ]);
 
-        const submissions = submissionRes.data; // [{ quiz: 'quizId', score: x }, ...]
+        const submissions = submissionRes.data;
 
-        // Gắn trạng thái submitted và điểm số vào từng quiz
+        
+
         const quizzesWithStatus = quizRes.data.map(quiz => {
-          const submission = submissions.find(s => s.quiz === quiz._id);
+    
+
+          const submission = submissions.find(s => {
+           
+
+            // So sánh dạng string để tránh lỗi do object khác nhau
+            return String(s.quiz._id) === String(quiz._id);
+          });
           return {
             ...quiz,
             submitted: !!submission,
@@ -53,11 +61,11 @@ const StudentQuizList = () => {
   return (
     <Box p={3}>
       <Typography variant="h4" gutterBottom>
-        Available Quizzes
+        Quiz hiện có
       </Typography>
 
       {quizzes.length === 0 ? (
-        <Typography>No quizzes available.</Typography>
+        <Typography>Không có quiz.</Typography>
       ) : (
         <Grid container spacing={2}>
           {quizzes.map((quiz) => (
@@ -67,7 +75,7 @@ const StudentQuizList = () => {
                   <Typography variant="h6">{quiz.title}</Typography>
                   {quiz.submitted ? (
                     <Typography variant="subtitle1" color="green">
-                      Score: {quiz.score} / {quiz.questions.length}
+                      Điểm: {quiz.score} / {quiz.questions.length}
                     </Typography>
                   ) : (
                     <Button
@@ -77,7 +85,7 @@ const StudentQuizList = () => {
                       color="primary"
                       fullWidth
                     >
-                      Take Quiz
+                      Làm quiz
                     </Button>
                   )}
                 </CardContent>

@@ -35,7 +35,7 @@ const TeacherHomePage = () => {
                         <StyledPaper>
                             <img src={Students} alt="Students" />
                             <Title>
-                                Class Students
+                                Lớp sinh viên
                             </Title>
                             <Data start={0} end={numberOfStudents} duration={2.5} />
                         </StyledPaper>
@@ -44,7 +44,7 @@ const TeacherHomePage = () => {
                         <StyledPaper>
                             <img src={Lessons} alt="Lessons" />
                             <Title>
-                                Total Lessons
+                                Số học kỳ
                             </Title>
                             <Data start={0} end={numberOfSessions} duration={5} />
                         </StyledPaper>
@@ -53,7 +53,7 @@ const TeacherHomePage = () => {
                         <StyledPaper>
                             <img src={Tests} alt="Tests" />
                             <Title>
-                                Tests Taken
+                                Các bài kiểm tra đã thực hiện
                             </Title>
                             <Data start={0} end={24} duration={4} />
                         </StyledPaper>
@@ -62,7 +62,7 @@ const TeacherHomePage = () => {
                         <StyledPaper>
                             <img src={Time} alt="Time" />
                             <Title>
-                                Total Hours
+                                Tổng số giờ
                             </Title>
                             <Data start={0} end={30} duration={4} suffix="hrs"/>                        </StyledPaper>
                     </Grid>

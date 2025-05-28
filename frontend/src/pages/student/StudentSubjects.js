@@ -34,7 +34,7 @@ const StudentSubjects = () => {
     }, [userDetails])
 
     useEffect(() => {
-        if (subjectMarks === []) {
+        if (subjectMarks == []) {
             dispatch(getSubjectList(currentUser.sclassName._id, "ClassSubjects"));
         }
     }, [subjectMarks, dispatch, currentUser.sclassName._id]);
@@ -47,13 +47,13 @@ const StudentSubjects = () => {
         return (
             <>
                 <Typography variant="h4" align="center" gutterBottom>
-                    Subject Marks
+                    Điểm môn học
                 </Typography>
                 <Table>
                     <TableHead>
                         <StyledTableRow>
-                            <StyledTableCell>Subject</StyledTableCell>
-                            <StyledTableCell>Marks</StyledTableCell>
+                            <StyledTableCell>Môn học</StyledTableCell>
+                            <StyledTableCell>Điểm</StyledTableCell>
                         </StyledTableRow>
                     </TableHead>
                     <TableBody>
@@ -82,13 +82,13 @@ const StudentSubjects = () => {
         return (
             <Container>
                 <Typography variant="h4" align="center" gutterBottom>
-                    Class Details
+                    Chi tiết lớp học
                 </Typography>
                 <Typography variant="h5" gutterBottom>
-                    You are currently in Class {sclassDetails && sclassDetails.sclassName}
+                    Bạn đã có ở trong lớp này rồi {sclassDetails && sclassDetails.sclassName}
                 </Typography>
                 <Typography variant="h6" gutterBottom>
-                    And these are the subjects:
+                    Và đây là các môn học:
                 </Typography>
                 {subjectsList &&
                     subjectsList.map((subject, index) => (
@@ -105,7 +105,7 @@ const StudentSubjects = () => {
     return (
         <>
             {loading ? (
-                <div>Loading...</div>
+                <div>Đang tải...</div>
             ) : (
                 <div>
                     {subjectMarks && Array.isArray(subjectMarks) && subjectMarks.length > 0

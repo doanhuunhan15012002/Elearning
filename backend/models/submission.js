@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 const student =  require('./studentSchema')
+
 const submissionSchema = new mongoose.Schema({
   quiz: { type: mongoose.Schema.Types.ObjectId, ref: 'Quiz', required: true },
-  student: { type: mongoose.Schema.Types.ObjectId, ref: 'Student', required: true }, // phải là ObjectId
+  student: { type: mongoose.Schema.Types.ObjectId, ref: 'student', required: true },
   answers: [
     {
       questionId: String,
@@ -15,3 +16,4 @@ const submissionSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Submission', submissionSchema);
+

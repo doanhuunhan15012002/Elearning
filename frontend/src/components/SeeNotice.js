@@ -24,9 +24,9 @@ const SeeNotice = () => {
     }
 
     const noticeColumns = [
-        { id: 'title', label: 'Title', minWidth: 170 },
-        { id: 'details', label: 'Details', minWidth: 100 },
-        { id: 'date', label: 'Date', minWidth: 170 },
+        { id: 'title', label: 'Tiêu đề', minWidth: 170 },
+        { id: 'details', label: 'Chi tiết', minWidth: 100 },
+        { id: 'date', label: 'Ngày', minWidth: 170 },
     ];
 
     const noticeRows = noticesList.map((notice) => {
@@ -42,12 +42,12 @@ const SeeNotice = () => {
     return (
         <div style={{ marginTop: '50px', marginRight: '20px' }}>
             {loading ? (
-                <div style={{ fontSize: '20px' }}>Loading...</div>
+                <div style={{ fontSize: '20px' }}>Đang tải...</div>
             ) : response ? (
-                <div style={{ fontSize: '20px' }}>No Notices to Show Right Now</div>
+                <div style={{ fontSize: '20px' }}>Không có thông báo nào để hiển thị ngay bây giờ</div>
             ) : (
                 <>
-                    <h3 style={{ fontSize: '30px', marginBottom: '40px' }}>Notices</h3>
+                    <h3 style={{ fontSize: '30px', marginBottom: '40px' }}>Thông báo</h3>
                     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                         {Array.isArray(noticesList) && noticesList.length > 0 &&
                             <TableViewTemplate columns={noticeColumns} rows={noticeRows} />

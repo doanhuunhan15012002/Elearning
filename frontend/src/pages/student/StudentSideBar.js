@@ -27,14 +27,14 @@ const StudentSideBar = () => {
                     <ListItemIcon>
                         <HomeIcon color={location.pathname === "/Student" || location.pathname === "/Student/dashboard" ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary="Home" />
+                    <ListItemText primary="Trang chủ" />
                 </ListItemButton>
 
                 <ListItemButton component={Link} to="subjects">
                     <ListItemIcon>
                         <AssignmentIcon color={isActive("subjects") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary="Subjects" />
+                    <ListItemText primary="Môn học" />
                 </ListItemButton>
                 <ListItemButton component={Link} to="quizzes">
                     <ListItemIcon>
@@ -46,14 +46,14 @@ const StudentSideBar = () => {
                     <ListItemIcon>
                         <ClassOutlinedIcon color={isActive("attendance") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary="Attendance" />
+                    <ListItemText primary="Điểm danh" />
                 </ListItemButton>
 
                 <ListItemButton component={Link} to="complain">
                     <ListItemIcon>
                         <AnnouncementOutlinedIcon color={isActive("complain") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary="Complain" />
+                    <ListItemText primary="Phản hồi" />
                 </ListItemButton>
             </React.Fragment>
 
@@ -61,21 +61,21 @@ const StudentSideBar = () => {
 
             <React.Fragment>
                 <ListSubheader component="div" inset>
-                    User
+                    Người dùng
                 </ListSubheader>
 
                 <ListItemButton component={Link} to="profile">
                     <ListItemIcon>
                         <AccountCircleOutlinedIcon color={isActive("profile") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary="Profile" />
+                    <ListItemText primary="Trang cá nhân" />
                 </ListItemButton>
 
                 <ListItemButton component={Link} to="logout">
                     <ListItemIcon>
                         <ExitToAppIcon color={isActive("logout") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
-                    <ListItemText primary="Logout" />
+                    <ListItemText primary="Đăng xuất" />
                 </ListItemButton>
             </React.Fragment>
         </>

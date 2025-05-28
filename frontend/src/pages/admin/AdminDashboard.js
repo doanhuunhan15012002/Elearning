@@ -73,7 +73,7 @@ const AdminDashboard = () => {
                             noWrap
                             sx={{ flexGrow: 1 }}
                         >
-                            Admin Dashboard
+                            Trang chủ quản trị viên
                         </Typography>
                         <AccountMenu />
                     </Toolbar>
@@ -92,51 +92,51 @@ const AdminDashboard = () => {
                 <Box component="main" sx={styles.boxStyled}>
                     <Toolbar />
                     <Routes>
-  <Route path="/" element={<AdminHomePage />} />
-  <Route path="dashboard" element={<AdminHomePage />} />
-  <Route path="profile" element={<AdminProfile />} />
-  <Route path="complains" element={<SeeComplains />} />
+                        <Route path="/" element={<AdminHomePage />} />
+                        <Route path="dashboard" element={<AdminHomePage />} />
+                        <Route path="profile" element={<AdminProfile />} />
+                        <Route path="complains" element={<SeeComplains />} />
 
-  {/* Notice */}
-  <Route path="addnotice" element={<AddNotice />} />
-  <Route path="notices" element={<ShowNotices />} />
+                        {/* Notice */}
+                        <Route path="addnotice" element={<AddNotice />} />
+                        <Route path="notices" element={<ShowNotices />} />
 
-  {/* Subject */}
-  <Route path="subjects" element={<ShowSubjects />} />
-  <Route path="subjects/subject/:classID/:subjectID" element={<ViewSubject />} />
-  <Route path="subjects/chooseclass" element={<ChooseClass situation="Subject" />} />
-  <Route path="addsubject/:id" element={<SubjectForm />} />
-  <Route path="class/subject/:classID/:subjectID" element={<ViewSubject />} />
-  <Route path="subject/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation="Subject" />} />
-  <Route path="subject/student/marks/:studentID/:subjectID" element={<StudentExamMarks situation="Subject" />} />
+                        {/* Subject */}
+                        <Route path="subjects" element={<ShowSubjects />} />
+                        <Route path="subjects/subject/:classID/:subjectID" element={<ViewSubject />} />
+                        <Route path="subjects/chooseclass" element={<ChooseClass situation="Subject" />} />
+                        <Route path="addsubject/:id" element={<SubjectForm />} />
+                        <Route path="class/subject/:classID/:subjectID" element={<ViewSubject />} />
+                        <Route path="subject/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation="Subject" />} />
+                        <Route path="subject/student/marks/:studentID/:subjectID" element={<StudentExamMarks situation="Subject" />} />
 
-  {/* Class */}
-  <Route path="addclass" element={<AddClass />} />
-  <Route path="classes" element={<ShowClasses />} />
-  <Route path="classes/class/:id" element={<ClassDetails />} />
-  <Route path="class/addstudents/:id" element={<AddStudent situation="Class" />} />
+                        {/* Class */}
+                        <Route path="addclass" element={<AddClass />} />
+                        <Route path="classes" element={<ShowClasses />} />
+                        <Route path="classes/class/:id" element={<ClassDetails />} />
+                        <Route path="class/addstudents/:id" element={<AddStudent situation="Class" />} />
 
-  {/* Student */}
-  <Route path="addstudents" element={<AddStudent situation="Student" />} />
-  <Route path="students" element={<ShowStudents />} />
-  <Route path="students/student/:id" element={<ViewStudent />} />
-  <Route path="students/student/attendance/:id" element={<StudentAttendance situation="Student" />} />
-  <Route path="students/student/marks/:id" element={<StudentExamMarks situation="Student" />} />
+                        {/* Student */}
+                        <Route path="addstudents" element={<AddStudent situation="Student" />} />
+                        <Route path="students" element={<ShowStudents />} />
+                        <Route path="students/student/:id" element={<ViewStudent />} />
+                        <Route path="students/student/attendance/:id" element={<StudentAttendance situation="Student" />} />
+                        <Route path="students/student/marks/:id" element={<StudentExamMarks situation="Student" />} />
 
-  {/* Teacher */}
-  <Route path="teachers" element={<ShowTeachers />} />
-  <Route path="teachers/teacher/:id" element={<TeacherDetails />} />
-  <Route path="teachers/chooseclass" element={<ChooseClass situation="Teacher" />} />
-  <Route path="teachers/choosesubject/:id" element={<ChooseSubject situation="Norm" />} />
-  <Route path="teachers/choosesubject/:classID/:teacherID" element={<ChooseSubject situation="Teacher" />} />
-  <Route path="teachers/addteacher/:id" element={<AddTeacher />} />
+                        {/* Teacher */}
+                        <Route path="teachers" element={<ShowTeachers />} />
+                        <Route path="teachers/teacher/:id" element={<TeacherDetails />} />
+                        <Route path="teachers/chooseclass" element={<ChooseClass situation="Teacher" />} />
+                        <Route path="teachers/choosesubject/:id" element={<ChooseSubject situation="Norm" />} />
+                        <Route path="teachers/choosesubject/:classID/:teacherID" element={<ChooseSubject situation="Teacher" />} />
+                        <Route path="teachers/addteacher/:id" element={<AddTeacher />} />
 
-  {/* Logout */}
-  <Route path="logout" element={<Logout />} />
+                        {/* Logout */}
+                        <Route path="logout" element={<Logout />} />
 
-  {/* Redirect unknown paths to dashboard */}
-  <Route path="*" element={<Navigate to="dashboard" />} />
-</Routes>
+                        {/* Redirect unknown paths to dashboard */}
+                        <Route path="*" element={<Navigate to="dashboard" />} />
+                    </Routes>
 
                 </Box>
             </Box>

@@ -29,30 +29,30 @@ const TeacherDetails = () => {
     return (
         <>
             {loading ? (
-                <div>Loading...</div>
+                <div>Đang tải...</div>
             ) : (
                 <Container>
                     <Typography variant="h4" align="center" gutterBottom>
-                        Teacher Details
+                        Chi tiết giảng viên
                     </Typography>
                     <Typography variant="h6" gutterBottom>
-                        Teacher Name: {teacherDetails?.name}
+                        Tên giảng viên: {teacherDetails?.name}
                     </Typography>
                     <Typography variant="h6" gutterBottom>
-                        Class Name: {teacherDetails?.teachSclass?.sclassName}
+                        Tên lớp: {teacherDetails?.teachSclass?.sclassName}
                     </Typography>
                     {isSubjectNamePresent ? (
                         <>
                             <Typography variant="h6" gutterBottom>
-                                Subject Name: {teacherDetails?.teachSubject?.subName}
+                                Tên môn học: {teacherDetails?.teachSubject?.subName}
                             </Typography>
                             <Typography variant="h6" gutterBottom>
-                                Subject Sessions: {teacherDetails?.teachSubject?.sessions}
+                                Học kì: {teacherDetails?.teachSubject?.sessions}
                             </Typography>
                         </>
                     ) : (
                         <Button variant="contained" onClick={handleAddSubject}>
-                            Add Subject
+                            Thêm môn học
                         </Button>
                     )}
                 </Container>

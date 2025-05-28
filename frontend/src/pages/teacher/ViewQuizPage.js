@@ -20,7 +20,7 @@ const ViewQuizPage = () => {
         const response = await axios.get(`http://localhost:5000/api/quizzes/${id}`);
         setQuiz(response.data);
       } catch (error) {
-        console.error('Error fetching quiz:', error);
+        console.error('Lỗi khi tải bài kiểm tra:', error);
       }
     };
 
@@ -28,7 +28,7 @@ const ViewQuizPage = () => {
   }, [id]);
 
   if (!quiz) {
-    return <Typography>Loading...</Typography>;
+    return <Typography>Đang tải...</Typography>;
   }
 
   return (
@@ -38,7 +38,7 @@ const ViewQuizPage = () => {
         <List>
           {quiz.questions.map((question, index) => (
             <Box key={index} mb={2}>
-              <Typography variant="h6">Question {index + 1}</Typography>
+              <Typography variant="h6">Câu hỏi {index + 1}</Typography>
               <Typography>{question.questionText}</Typography>
               <List dense>
                 {question.options.map((option, i) => (

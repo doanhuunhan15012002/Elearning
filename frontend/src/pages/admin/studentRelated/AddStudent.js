@@ -58,7 +58,7 @@ const AddStudent = ({ situation }) => {
     const submitHandler = (event) => {
         event.preventDefault()
         if (sclassName === "") {
-            setMessage("Please select a classname")
+            setMessage("Vui lòng chọn tên lớp")
             setShowPopup(true)
         }
         else {
@@ -68,17 +68,17 @@ const AddStudent = ({ situation }) => {
     }
 
     useEffect(() => {
-        if (status === 'added') {
+        if (status === 'Đã thêm') {
             dispatch(underControl())
             navigate(-1)
         }
-        else if (status === 'failed') {
+        else if (status === 'Thất bại') {
             setMessage(response)
             setShowPopup(true)
             setLoader(false)
         }
-        else if (status === 'error') {
-            setMessage("Network Error")
+        else if (status === 'Lỗi') {
+            setMessage("Lỗi mạng")
             setShowPopup(true)
             setLoader(false)
         }
@@ -88,9 +88,9 @@ const AddStudent = ({ situation }) => {
         <>
             <div className="register">
                 <form className="registerForm" onSubmit={submitHandler}>
-                    <span className="registerTitle">Add Student</span>
-                    <label>Name</label>
-                    <input className="registerInput" type="text" placeholder="Enter student's name..."
+                    <span className="registerTitle">Thêm sinh viên</span>
+                    <label>Tên</label>
+                    <input className="registerInput" type="text" placeholder="Nhập tên sinh viên..."
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                         autoComplete="name" required />
@@ -98,12 +98,12 @@ const AddStudent = ({ situation }) => {
                     {
                         situation === "Student" &&
                         <>
-                            <label>Class</label>
+                            <label>Lớp</label>
                             <select
                                 className="registerInput"
                                 value={className}
                                 onChange={changeHandler} required>
-                                <option value='Select Class'>Select Class</option>
+                                <option value='Select Class'>Chọn lớp</option>
                                 {sclassesList.map((classItem, index) => (
                                     <option key={index} value={classItem.sclassName}>
                                         {classItem.sclassName}
@@ -113,14 +113,14 @@ const AddStudent = ({ situation }) => {
                         </>
                     }
 
-                    <label>Roll Number</label>
-                    <input className="registerInput" type="number" placeholder="Enter student's Roll Number..."
+                    <label>Mã số sinh viên</label>
+                    <input className="registerInput" type="number" placeholder="Nhập mã số sinh viên..."
                         value={rollNum}
                         onChange={(event) => setRollNum(event.target.value)}
                         required />
 
-                    <label>Password</label>
-                    <input className="registerInput" type="password" placeholder="Enter student's password..."
+                    <label>Mật khẩu</label>
+                    <input className="registerInput" type="password" placeholder="Nhập mật khẩu..."
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
                         autoComplete="new-password" required />
@@ -129,7 +129,7 @@ const AddStudent = ({ situation }) => {
                         {loader ? (
                             <CircularProgress size={24} color="inherit" />
                         ) : (
-                            'Add'
+                            'Thêm'
                         )}
                     </button>
                 </form>

@@ -26,8 +26,8 @@ const TeacherClassDetails = () => {
     }
 
     const studentColumns = [
-        { id: 'name', label: 'Name', minWidth: 170 },
-        { id: 'rollNum', label: 'Roll Number', minWidth: 100 },
+        { id: 'name', label: 'Tên', minWidth: 170 },
+        { id: 'rollNum', label: 'Mã số sinh viên', minWidth: 100 },
     ]
 
     const studentRows = sclassStudents.map((student) => {
@@ -39,14 +39,14 @@ const TeacherClassDetails = () => {
     })
 
     const StudentsButtonHaver = ({ row }) => {
-        const options = ['Take Attendance', 'Provide Marks'];
+        const options = ['Điểm danh', 'Ghi điểm'];
 
         const [open, setOpen] = React.useState(false);
         const anchorRef = React.useRef(null);
         const [selectedIndex, setSelectedIndex] = React.useState(0);
 
         const handleClick = () => {
-            console.info(`You clicked ${options[selectedIndex]}`);
+            console.info(`Bạn đã chọn ${options[selectedIndex]}`);
             if (selectedIndex === 0) {
                 handleAttendance();
             } else if (selectedIndex === 1) {
@@ -86,7 +86,7 @@ const TeacherClassDetails = () => {
                     }
                     
                 >
-                    View
+                    Xem
                 </BlueButton>
                 <React.Fragment>
                     <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
@@ -147,22 +147,22 @@ const TeacherClassDetails = () => {
     return (
         <>
             {loading ? (
-                <div>Loading...</div>
+                <div>Đang tải...</div>
             ) : (
                 <>
                     <Typography variant="h4" align="center" gutterBottom>
-                        Class Details
+                        Chi tiết lớp học
                     </Typography>
                     {getresponse ? (
                         <>
                             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                                No Students Found
+                                Không sinh viên nào được tìm thấy
                             </Box>
                         </>
                     ) : (
                         <Paper sx={{ width: '100%', overflow: 'hidden',  }}>
                             <Typography variant="h5" gutterBottom style={{margin:5}}>
-                                Students List:
+                                Danh sách sinh viên:
                             </Typography>
 
                             {Array.isArray(sclassStudents) && sclassStudents.length > 0 &&

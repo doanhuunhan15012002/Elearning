@@ -25,6 +25,8 @@ const {
 const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
 const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
 const quizController = require('../controllers/quiz-controller.js');
+const submissionController = require('../controllers/submissionController.js');
+
 // Admin
 router.post('/AdminReg', adminRegister);
 router.post('/AdminLogin', adminLogIn);
@@ -123,7 +125,13 @@ router.delete('/api/quizzes/:id', quizController.deleteQuiz);
 router.put('/api/quizzes/:id', quizController.updateQuiz);
 router.get('/api/quizzes/:id', quizController.getQuizById);
 router.get('/api/quizzes/:id/check-submission/:studentId', quizController.checkSubmission);
-router.get('/api/submissions/student/:studentId', quizController.getSubmissionsByStudent);
+router.get('/api/submissions/quiz/:quizId', quizController.getSubmissionsByQuiz);
+//Submission
+router.get('/api/submissions/student/:studentId', submissionController.getSubmissionsByStudent);
+
+
+
+
 
 
 

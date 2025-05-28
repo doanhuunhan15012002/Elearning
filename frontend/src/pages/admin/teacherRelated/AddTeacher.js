@@ -63,28 +63,28 @@ const AddTeacher = () => {
     <div>
       <div className="register">
         <form className="registerForm" onSubmit={submitHandler}>
-          <span className="registerTitle">Add Teacher</span>
+          <span className="registerTitle">Thêm giảng viên</span>
           <br />
           <label>
-            Subject : {subjectDetails && subjectDetails.subName}
+            Môn học : {subjectDetails && subjectDetails.subName}
           </label>
           <label>
-            Class : {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
+            Lớp : {subjectDetails && subjectDetails.sclassName && subjectDetails.sclassName.sclassName}
           </label>
-          <label>Name</label>
+          <label>Tên</label>
           <input className="registerInput" type="text" placeholder="Enter teacher's name..."
             value={name}
             onChange={(event) => setName(event.target.value)}
             autoComplete="name" required />
 
           <label>Email</label>
-          <input className="registerInput" type="email" placeholder="Enter teacher's email..."
+          <input className="registerInput" type="email" placeholder="Nhập email giảng viên..."
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             autoComplete="email" required />
 
-          <label>Password</label>
-          <input className="registerInput" type="password" placeholder="Enter teacher's password..."
+          <label>Mật khẩu</label>
+          <input className="registerInput" type="password" placeholder="Nhập mật khẩu..."
             value={password}
             onChange={(event) => setPassword(event.target.value)}
             autoComplete="new-password" required />

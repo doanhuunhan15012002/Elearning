@@ -21,9 +21,9 @@ const SeeComplains = () => {
   }
 
   const complainColumns = [
-    { id: 'user', label: 'User', minWidth: 170 },
-    { id: 'complaint', label: 'Complaint', minWidth: 100 },
-    { id: 'date', label: 'Date', minWidth: 170 },
+    { id: 'user', label: 'Người dùng', minWidth: 170 },
+    { id: 'complaint', label: 'Phản hồi', minWidth: 100 },
+    { id: 'date', label: 'Ngày', minWidth: 170 },
   ];
 
   const complainRows = complainsList && complainsList.length > 0 && complainsList.map((complain) => {
@@ -48,12 +48,12 @@ const SeeComplains = () => {
   return (
     <>
       {loading ?
-        <div>Loading...</div>
+        <div>Đang tải...</div>
         :
         <>
           {response ?
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-              No Complains Right Now
+              Hiện tại không có phản hồi
             </Box>
             :
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>

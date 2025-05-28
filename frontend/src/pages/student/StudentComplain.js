@@ -38,12 +38,12 @@ const StudentComplain = () => {
         if (status === "added") {
             setLoader(false)
             setShowPopup(true)
-            setMessage("Done Successfully")
+            setMessage("Thực hiện thành công")
         }
         else if (error) {
             setLoader(false)
             setShowPopup(true)
-            setMessage("Network Error")
+            setMessage("Lỗi mạng")
         }
     }, [status, error])
 
@@ -67,13 +67,13 @@ const StudentComplain = () => {
                 >
                     <div>
                         <Stack spacing={1} sx={{ mb: 3 }}>
-                            <Typography variant="h4">Complain</Typography>
+                            <Typography variant="h4">Phản hồi</Typography>
                         </Stack>
                         <form onSubmit={submitHandler}>
                             <Stack spacing={3}>
                                 <TextField
                                     fullWidth
-                                    label="Select Date"
+                                    label="Chọn ngày"
                                     type="date"
                                     value={date}
                                     onChange={(event) => setDate(event.target.value)} required
@@ -83,7 +83,7 @@ const StudentComplain = () => {
                                 />
                                 <TextField
                                     fullWidth
-                                    label="Write your complain"
+                                    label="Viết phản hồi của bạn"
                                     variant="outlined"
                                     value={complaint}
                                     onChange={(event) => {
@@ -102,7 +102,7 @@ const StudentComplain = () => {
                                 type="submit"
                                 disabled={loader}
                             >
-                                {loader ? <CircularProgress size={24} color="inherit" /> : "Add"}
+                                {loader ? <CircularProgress size={24} color="inherit" /> : "Thêm"}
                             </BlueButton>
                         </form>
                     </div>

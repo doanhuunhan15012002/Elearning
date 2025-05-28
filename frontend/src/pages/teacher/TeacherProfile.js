@@ -21,11 +21,11 @@ const TeacherProfile = () => {
 			  <img class="w-10 h-10 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="" />
 			  <span class="top-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
 		    </div>
-          <ProfileText>Name: {currentUser.name}</ProfileText>
+          <ProfileText>Tên: {currentUser.name}</ProfileText>
           <ProfileText>Email: {currentUser.email}</ProfileText>
-          <ProfileText>Class: {teachSclass.sclassName}</ProfileText>
-          <ProfileText>Subject: {teachSubject.subName}</ProfileText>
-          <ProfileText>School: {teachSchool.schoolName}</ProfileText>
+          <ProfileText>Lớp: {teachSclass.sclassName}</ProfileText>
+          <ProfileText>Môn học: {teachSubject.subName}</ProfileText>
+          <ProfileText>Trường: {teachSchool.schoolName}</ProfileText>
         </ProfileCardContent>
       </ProfileCard>
     </>

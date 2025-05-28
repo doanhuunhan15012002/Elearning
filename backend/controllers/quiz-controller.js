@@ -1,6 +1,6 @@
 const Quiz = require('../models/quiz');
 const Submission = require('../models/submission');
-const Student = require('../models/studentSchema')
+const student = require('../models/studentSchema')
 // Tạo quiz (chỉ dành cho giáo viên)
 exports.createQuiz = async (req, res) => {
   try {
@@ -51,13 +51,13 @@ exports.getQuizById = async (req, res) => {
 
 exports.submitQuiz = async (req, res) => {
   const quizId = req.params.id;
-
   const { studentId, answers } = req.body;
 
   try {
     console.log('Submit quiz params:', req.params);
     console.log('Submit quiz body:', req.body);
-    // Kiểm tra student đã submit chưa
+
+    // Check đã submit chưa
     const existingSubmission = await Submission.findOne({ student: studentId, quiz: quizId });
     if (existingSubmission) {
       return res.status(400).json({ message: 'Quiz already submitted.' });
@@ -67,9 +67,15 @@ exports.submitQuiz = async (req, res) => {
     if (!quiz) return res.status(404).json({ message: 'Quiz not found' });
 
     let score = 0;
-    quiz.questions.forEach((q, index) => {
-      if (answers[index] === q.correctAnswer) score++;
+    quiz.questions.forEach((q) => {
+      const studentAnswer = answers[q._id.toString()];
+      if (studentAnswer === q.correctAnswer) {
+        score++;
+      }
     });
+
+
+
 
     const submission = new Submission({
       student: studentId,
@@ -86,6 +92,7 @@ exports.submitQuiz = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
 
 
 
@@ -145,15 +152,46 @@ exports.checkSubmission = async (req, res) => {
     res.status(500).json({ message: 'Error checking submission' });
   }
 };
-exports.getSubmissionsByStudent = async (req, res) => {
-  const { studentId } = req.params;
+// exports.getSubmissionsByStudent = async (req, res) => {
+//   const { studentId } = req.params;
+//   try {
+//     const submissions = await Submission.find({ student: studentId }).select('quiz score');
+//     res.json(submissions);
+//   } catch (error) {
+//     res.status(500).json({ message: 'Server error' });
+//   }
+// };
+
+// GET /api/submissions/quiz/:quizId
+exports.getSubmissionsByQuiz = async (req, res) => {
+  const { quizId } = req.params;
   try {
-    const submissions = await Submission.find({ student: studentId }).select('quiz score');
+    const submissions = await Submission.find({ quiz: quizId })
+      .populate('student')  // 'student' chính xác tên model
+      .exec();
     res.json(submissions);
-  } catch (error) {
+  } catch (err) {
+    console.error('Error getting submissions by quiz:', err);
     res.status(500).json({ message: 'Server error' });
   }
 };
 
+exports.getSubmissionsByStudent = async (req, res) => {
+  try {
+    const studentId = req.params.studentId;
 
+    const submissions = await Submission.find({ student: studentId })
+      .populate('quiz') // nếu bạn muốn thông tin quiz kèm theo
+      .populate('student'); // nếu bạn cần thông tin học sinh
+
+    if (!submissions.length) {
+      return res.status(404).json({ message: 'No submissions found for this student' });
+    }
+
+    res.json(submissions);
+  } catch (error) {
+    console.error('Error fetching submissions by student:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 

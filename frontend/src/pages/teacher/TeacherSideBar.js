@@ -30,14 +30,14 @@ const TeacherSideBar = () => {
                 <ListItemIcon>
                     <HomeIcon color={isActive("/Teacher/dashboard") ? 'primary' : 'inherit'} />
                 </ListItemIcon>
-                <ListItemText primary="Home" />
+                <ListItemText primary="Trang chủ" />
             </ListItemButton>
 
             <ListItemButton component={Link} to="/Teacher/class">
                 <ListItemIcon>
                     <ClassOutlinedIcon color={isActive("/Teacher/class") ? 'primary' : 'inherit'} />
                 </ListItemIcon>
-                <ListItemText primary={`Class ${sclassName}`} />
+                <ListItemText primary={`Lớp ${sclassName}`} />
             </ListItemButton>
 
             <ListItemButton component={Link} to="/Teacher/quiz">
@@ -51,27 +51,27 @@ const TeacherSideBar = () => {
                 <ListItemIcon>
                     <AnnouncementOutlinedIcon color={isActive("/Teacher/complain") ? 'primary' : 'inherit'} />
                 </ListItemIcon>
-                <ListItemText primary="Complain" />
+                <ListItemText primary="Phản hồi" />
             </ListItemButton>
 
             <Divider sx={{ my: 1 }} />
 
             <ListSubheader component="div" inset>
-                User
+                Người dùng
             </ListSubheader>
 
             <ListItemButton component={Link} to="/Teacher/profile">
                 <ListItemIcon>
                     <AccountCircleOutlinedIcon color={isActive("/Teacher/profile") ? 'primary' : 'inherit'} />
                 </ListItemIcon>
-                <ListItemText primary="Profile" />
+                <ListItemText primary="Thông tin cá nhân" />
             </ListItemButton>
 
             <ListItemButton component={Link} to="logout">
                 <ListItemIcon>
                     <ExitToAppIcon color={isActive("logout") ? 'primary' : 'inherit'} />
                 </ListItemIcon>
-                <ListItemText primary="Logout" />
+                <ListItemText primary="Đăng xuất" />
             </ListItemButton>
         </>
     );

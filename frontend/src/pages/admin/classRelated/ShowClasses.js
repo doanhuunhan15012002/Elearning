@@ -39,7 +39,7 @@ const ShowClasses = () => {
   const deleteHandler = (deleteID, address) => {
     console.log(deleteID);
     console.log(address);
-    setMessage("Sorry the delete function has been disabled for now.")
+    setMessage("Xin lỗi chức năng xóa hiện không hoạt động")
     setShowPopup(true)
     // dispatch(deleteUser(deleteID, address))
     //   .then(() => {
@@ -48,7 +48,7 @@ const ShowClasses = () => {
   }
 
   const sclassColumns = [
-    { id: 'name', label: 'Class Name', minWidth: 170 },
+    { id: 'name', label: 'Tên lớp', minWidth: 170 },
   ]
 
   const sclassRows = sclassesList && sclassesList.length > 0 && sclassesList.map((sclass) => {
@@ -70,7 +70,7 @@ const ShowClasses = () => {
         </IconButton>
         <BlueButton variant="contained"
           onClick={() => navigate("/Admin/classes/class/" + row.id)}>
-          View
+          Xem
         </BlueButton>
         <ActionMenu actions={actions} />
       </ButtonContainer>
@@ -91,7 +91,7 @@ const ShowClasses = () => {
     return (
       <>
         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-          <Tooltip title="Add Students & Subjects">
+          <Tooltip title="Thêm học sinh và môn học">
             <IconButton
               onClick={handleClick}
               size="small"
@@ -100,7 +100,7 @@ const ShowClasses = () => {
               aria-haspopup="true"
               aria-expanded={open ? 'true' : undefined}
             >
-              <h5>Add</h5>
+              <h5>Thêm</h5>
               <SpeedDialIcon />
             </IconButton>
           </Tooltip>
@@ -133,11 +133,11 @@ const ShowClasses = () => {
 
   const actions = [
     {
-      icon: <AddCardIcon color="primary" />, name: 'Add New Class',
+      icon: <AddCardIcon color="primary" />, name: 'Thêm lớp học mới',
       action: () => navigate("/Admin/addclass")
     },
     {
-      icon: <DeleteIcon color="error" />, name: 'Delete All Classes',
+      icon: <DeleteIcon color="error" />, name: 'Xóa tất cả lớp học',
       action: () => deleteHandler(adminID, "Sclasses")
     },
   ];
@@ -145,13 +145,13 @@ const ShowClasses = () => {
   return (
     <>
       {loading ?
-        <div>Loading...</div>
+        <div>Đang tải...</div>
         :
         <>
           {getresponse ?
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
               <GreenButton variant="contained" onClick={() => navigate("/Admin/addclass")}>
-                Add Class
+                Thêm lớp học
               </GreenButton>
             </Box>
             :

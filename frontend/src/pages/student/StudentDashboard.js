@@ -53,7 +53,7 @@ const StudentDashboard = () => {
                         noWrap
                         sx={{ flexGrow: 1 }}
                     >
-                        Student Dashboard
+                        Trang chủ sinh viên
                     </Typography>
                     <AccountMenu />
                 </Toolbar>

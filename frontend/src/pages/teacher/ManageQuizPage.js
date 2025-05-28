@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import { Delete, Edit, Visibility } from '@mui/icons-material';
 import axios from 'axios';
-
+import TeacherViewMark from './TeacherViewMark';
 const ManageQuizPage = () => {
   const [quizzes, setQuizzes] = useState([]);
   const navigate = useNavigate();
@@ -50,24 +50,25 @@ const ManageQuizPage = () => {
   return (
     <Box p={3}>
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
-        <Typography variant="h5">Manage Quizzes</Typography>
+        <Typography variant="h5">Quản lý Quizzes</Typography>
         <Button
           variant="contained"
           color="primary"
           onClick={() => navigate('/Teacher/quiz/create')}
 
         >
-          Create Quiz
+          Tạo Quiz
         </Button>
+
       </Box>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell>#</TableCell>
-              <TableCell>Title</TableCell>
-              <TableCell>Questions</TableCell>
-              <TableCell align="right">Actions</TableCell>
+              <TableCell>Chủ đề</TableCell>
+              <TableCell>Câu hỏi</TableCell>
+              <TableCell align="right">Thao tác</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -95,10 +96,20 @@ const ManageQuizPage = () => {
                   >
                     <Delete />
                   </IconButton>
+                  {/* ✅ Thêm nút Xem kết quả ở đây */}
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    onClick={() => navigate(`/Teacher/quiz-results/${quiz._id}`)}
+                    sx={{ ml: 1 }}
+                  >
+                    Kết quả
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
+
         </Table>
       </TableContainer>
     </Box>
